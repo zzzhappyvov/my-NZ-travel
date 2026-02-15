@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K&Y New Zealand Honeymoon | 紐西蘭蜜月之旅</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Sans+TC:wght@300;400;500;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Morandi Palette */
+            --m-green: #889C8F;       
+            --m-green-light: #E3E9E4; 
+            --m-blue: #7B9AA6;        
+            --m-blue-light: #E0E7EA;
+            --m-dark: #4A5559;        
+            --m-text: #4A5559;        
+            --m-bg: #F2F4F3;          
+            --m-highlight: #374151; /* Dark highlight bg */
+            --m-pink: #DCC7C4;
+        }
+        
+        body {
+            font-family: 'Noto Sans TC', 'Lato', sans-serif;
+            background-color: var(--m-bg);
+            background-image: linear-gradient(135deg, #F2F4F3 0%, #E6EBE9 100%);
+            background-attachment: fixed;
+            color: var(--m-text);
+            overflow-x: hidden;
+            padding-bottom: 100px;
+        }
+
+        h1, h2, .date-font { font-family: 'Cinzel', serif; }
+
+        .hero-bg {
+            background-image: url('https://images.unsplash.com/photo-1469521669194-babb45599def?q=80&w=2069&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            height: 35vh; 
+            position: relative;
+        }
+        .hero-overlay { background: rgba(60, 75, 80, 0.4); }
+        @media (min-width: 768px) { .hero-bg { height: 50vh; } }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 20px rgba(123, 154, 166, 0.15);
+        }
+
+        /* Highlight Style */
+        .card-highlight {
+            background: var(--m-highlight);
+            color: white;
+            border: 1px solid #4B5563;
+        }
+        .card-highlight h5, .card-highlight span, .card-highlight i, .card-highlight .font-bold {
+            color: white !important;
+        }
+        .card-highlight .text-gray-600, .card-highlight .text-gray-500, .card-highlight .text-gray-700 {
+            color: #D1D5DB !important;
+        }
+        .card-highlight a {
+            color: #93C5FD !important; 
+        }
+
+        /* Navigation */
+        .mobile-sticky-nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 10px;
+        }
+
+        .day-btn {
+            white-space: nowrap;
+            transition: all 0.3s;
+            opacity: 0.7;
+            border-bottom: 3px solid transparent;
+            color: var(--m-text);
+        }
+        .day-btn:hover { opacity: 1; background-color: var(--m-green-light); }
+        .day-btn.active {
+            opacity: 1;
+            color: var(--m-blue);
+            border-bottom: 3px solid var(--m-blue);
+            font-weight: bold;
+            background-color: white;
+        }
+
+        .day-content { display: none; animation: fadeIn 0.4s ease-out forwards; }
+        .day-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .nav-scroller::-webkit-scrollbar { display: none; }
+        .nav-scroller { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Form Styles */
+        .edit-form input, .edit-form textarea {
+            width: 100%;
+            border: 1px solid #D1D5DB;
+            border-radius: 0.375rem;
+            padding: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+        }
+        .edit-form label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: #4B5563;
+            margin-bottom: 0.25rem;
+        }
+        
+        /* Checklist Styles */
+        .checklist-item.checked span {
+            text-decoration: line-through;
+            color: #9CA3AF;
+        }
+        .checklist-checkbox {
+            accent-color: var(--m-blue);
+            width: 1.2em;
+            height: 1.2em;
+            cursor: pointer;
+        }
+        
+        /* Nav Link Style */
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            font-weight: 500;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+        .nav-link:hover { transform: translateX(2px); }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <div class="hero-bg flex items-center justify-center text-center px-4" id="top">
+        <div class="absolute inset-0 hero-overlay"></div>
+        <div class="relative z-10 text-white">
+            <h1 class="text-3xl md:text-6xl font-bold mb-2 tracking-wider text-shadow">K & Y</h1>
+            <h2 class="text-lg md:text-3xl font-light mb-3">Honeymoon</h2>
+            <div class="inline-block border-t border-b border-white/80 py-1 px-4 text-xs md:text-base tracking-widest bg-white/10 backdrop-blur-sm rounded-sm">
+                2026.02.21 — 2026.03.12
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Nav -->
+    <div class="mobile-sticky-nav md:hidden flex items-center justify-between gap-2">
+        <button onclick="prevDay()" class="p-2 rounded-full bg-theme-green-light text-[#889C8F] bg-[#E3E9E4] hover:bg-gray-200 w-10 h-10 flex items-center justify-center active:scale-95"><i class="fas fa-chevron-left"></i></button>
+        <div class="flex-1">
+            <select id="mobile-day-select" onchange="switchTab(this.value)" class="w-full bg-white border border-gray-200 text-gray-600 font-bold py-2 px-4 rounded-lg text-center focus:ring-2 focus:ring-[#7B9AA6]">
+                <option value="prep">📋 行前準備</option>
+                <option value="shopping">🛍️ 必買清單</option>
+                <option value="hotel">🏨 飯店資訊</option>
+                <option value="day1">Day 1 - 2/21 (出發)</option>
+                <option value="day2">Day 2 - 2/22 (奧克蘭)</option>
+                <option value="day3">Day 3 - 2/23 (Waitomo)</option>
+                <option value="day4">Day 4 - 2/24 (Rotorua)</option>
+                <option value="day5">Day 5 - 2/25 (Taupo)</option>
+                <option value="day6">Day 6 - 2/26 (Queenstown)</option>
+                <option value="day7">Day 7 - 2/27 (Glenorchy)</option>
+                <option value="day8">Day 8 - 2/28 (Wanaka)</option>
+                <option value="day9">Day 9 - 3/01 (Haast)</option>
+                <option value="day10">Day 10 - 3/02 (Fox)</option>
+                <option value="day11">Day 11 - 3/03 (Arthur's)</option>
+                <option value="day12">Day 12 - 3/04 (CHC)</option>
+                <option value="day13">Day 13 - 3/05 (Tekapo)</option>
+                <option value="day14">Day 14 - 3/06 (Mt Cook)</option>
+                <option value="day15">Day 15 - 3/07 (Cromwell)</option>
+                <option value="day16">Day 16 - 3/08 (Te Anau)</option>
+                <option value="day17">Day 17 - 3/09 (Milford)</option>
+                <option value="day18">Day 18 - 3/10 (QT)</option>
+                <option value="day19">Day 19 - 3/11 (Depart)</option>
+                <option value="final">End - 3/12 (Home)</option>
+            </select>
+        </div>
+        <button onclick="nextDay()" class="p-2 rounded-full text-[#7B9AA6] bg-[#E0E7EA] hover:bg-gray-200 w-10 h-10 flex items-center justify-center active:scale-95"><i class="fas fa-chevron-right"></i></button>
+    </div>
+
+    <!-- Desktop Nav -->
+    <div class="hidden md:block sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex overflow-x-auto nav-scroller py-2 gap-1" id="nav-container">
+                <button onclick="switchTab('prep')" class="day-btn px-3 py-2 rounded-t-lg font-bold" id="btn-prep">📋 準備</button>
+                <button onclick="switchTab('shopping')" class="day-btn px-3 py-2 rounded-t-lg font-bold" id="btn-shopping">🛍️ 必買</button>
+                <button onclick="switchTab('hotel')" class="day-btn px-3 py-2 rounded-t-lg font-bold" id="btn-hotel">🏨 飯店</button>
+                <button onclick="switchTab('day1')" class="day-btn px-3 py-2 rounded-t-lg" id="btn-day1">D1</button>
+                <!-- JS will populate Day 2-19 buttons -->
+                <script>
+                    for(let i=2; i<=19; i++) {
+                        document.write(`<button onclick="switchTab('day${i}')" class="day-btn px-3 py-2 rounded-t-lg" id="btn-day${i}">D${i}</button>`);
+                    }
+                </script>
+                <button onclick="switchTab('final')" class="day-btn px-3 py-2 rounded-t-lg" id="btn-final">End</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="max-w-4xl mx-auto px-2 md:px-4 py-6 min-h-[60vh] relative" id="content-area">
+        
+        <!-- Prep Checklist Content -->
+        <div id="prep" class="day-content">
+            <div class="glass-card rounded-2xl p-5 md:p-8 w-full shadow-lg">
+                <div class="flex items-center justify-between mb-6 border-b border-gray-200 pb-4">
+                    <h4 class="text-2xl md:text-3xl font-bold text-[#7B9AA6]"><i class="fas fa-clipboard-check mr-2"></i>行前準備清單</h4>
+                    <button onclick="resetChecklist()" class="text-xs text-gray-400 hover:text-red-500 transition"><i class="fas fa-rotate-left mr-1"></i>重置清單</button>
+                </div>
+                <div id="checklist-container" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+            </div>
+        </div>
+
+        <!-- Shopping List Content -->
+        <div id="shopping" class="day-content">
+            <div class="glass-card rounded-2xl p-5 md:p-8 w-full shadow-lg border-l-4 border-[#B5A8B7]">
+                <div class="flex items-center justify-between mb-6 border-b border-gray-200 pb-4">
+                    <h4 class="text-2xl md:text-3xl font-bold text-[#B5A8B7]"><i class="fas fa-shopping-bag mr-2"></i>紐西蘭必買清單</h4>
+                    <button onclick="resetShoppingList()" class="text-xs text-gray-400 hover:text-red-500 transition"><i class="fas fa-rotate-left mr-1"></i>重置</button>
+                </div>
+                <div id="shopping-list-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Javascript will render categories here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Hotel Info Content -->
+        <div id="hotel" class="day-content">
+            <div class="glass-card rounded-2xl p-5 md:p-8 w-full shadow-lg">
+                <h4 class="text-2xl md:text-3xl font-bold text-[#7B9AA6] mb-6 border-b border-gray-200 pb-4"><i class="fas fa-hotel mr-2"></i>住宿資訊總覽</h4>
+                <div class="grid grid-cols-1 gap-4" id="hotel-list"></div>
+            </div>
+        </div>
+
+        <!-- Day 1 (Static Layout) -->
+        <div id="day1" class="day-content active">
+             <div class="glass-card rounded-2xl p-6 border-l-4 border-[#7B9AA6]">
+                <h4 class="text-2xl font-bold mb-4 text-[#7B9AA6]">Day 1: 啟程 🛫</h4>
+                <div class="space-y-4">
+                    <div class="flex gap-3"><span class="font-mono text-gray-400 pt-1">15:00</span><div><span class="font-bold text-gray-700">整理行李 🧳</span><p class="text-sm text-gray-500">確認行前準備清單已完成，用愉快的心情準備出發! 🥰✈️</p></div></div>
+                    <div class="flex gap-3"><span class="font-mono text-gray-400 pt-1">20:55</span><div class="bg-[#E0E7EA] p-2 rounded w-full font-bold text-[#7B9AA6]">桃園機場 Check-in 🛂</div></div>
+                    <div class="bg-white p-4 rounded-xl border border-[#7B9AA6] shadow-sm relative">
+                        <span class="absolute top-0 right-0 bg-[#7B9AA6] text-white text-xs px-2 py-1 rounded-bl">去程航班</span>
+                        <div class="font-bold text-[#4A5559] mb-2">中華航空 CI0053 🇹🇼✈️🇳🇿</div>
+                        <div class="flex justify-between items-center text-sm">
+                            <div class="text-center"><span class="block text-xl font-bold">TPE</span><span class="text-xs text-gray-400">23:55 (2/21)<br>桃園T2</span></div>
+                            <div class="flex-1 px-2 text-center text-xs text-gray-400"><i class="fas fa-plane text-[#7B9AA6]"></i><br>14h 15m</div>
+                            <div class="text-center"><span class="block text-xl font-bold">AKL</span><span class="text-xs text-gray-400">19:10 (2/22)<br>奧克蘭T1</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dynamic Days Container (Day 2 - 19) -->
+        <div id="dynamic-days-container"></div>
+
+        <!-- Final Day (Static Layout) -->
+        <div id="final" class="day-content">
+            <div class="glass-card rounded-2xl p-6 border-l-4 border-gray-400 bg-white shadow-lg text-center">
+                <h4 class="text-2xl font-bold mb-4 text-gray-800">Day 20: 平安返家 🏠</h4>
+                <div class="space-y-4 text-left">
+                    <div class="flex gap-3"><span class="font-mono text-gray-400 w-12">04:20</span><div><span class="font-bold">抵達台北 (TPE) 🇹🇼</span></div></div>
+                    <div class="flex gap-3"><span class="font-mono text-gray-400 w-12">05:20</span><div class="bg-blue-50 p-2 rounded w-full text-blue-800">客運回台中 🚌</div></div>
+                    <div class="flex gap-3"><span class="font-mono text-gray-400 w-12">08:00</span><div class="bg-gray-50 p-2 rounded w-full border border-gray-200 font-bold">回可愛的家休息 💤</div></div>
+                </div>
+                <div class="mt-8 pt-6 border-t border-gray-100">
+                    <div class="inline-block relative">
+                         <i class="fas fa-home text-transparent bg-clip-text bg-gradient-to-br from-[#DCC7C4] to-[#B5A8B7] text-7xl"></i>
+                         <i class="fas fa-heart text-[#B5A8B7] text-3xl absolute bottom-3 left-1/2 transform -translate-x-1/2 animate-pulse border-2 border-white rounded-full bg-white"></i>
+                    </div>
+                    <p class="mt-4 text-gray-400 text-xs">End of Honeymoon</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- 1. Data Configuration (Itinerary) ---
+        const initialItinerary = {
+            day2: { date: "Feb 22", title: "抵達奧克蘭 🛬", color: "#889C8F", items: [
+                { time: "19:10", title: "抵達奧克蘭機場 (AKL) 🇳🇿", desc: "辦理入境與提領行李", note: "奧克蘭第1航廈" },
+                { time: "20:10", title: "晚餐 🍽️", desc: "機場附近享用晚餐", cost: "$50 NZD" },
+                { time: "20:30", title: "交通接駁 🚌", desc: "搭乘 Yellow Bus 前往飯店", cost: "$6 NZD" },
+                { time: "21:00", title: "Holiday Inn Auckland Airport 🏨", desc: "Check-in & 休息", type: "hotel", link: "https://www.google.com/maps/search/?api=1&query=Holiday+Inn+Auckland+Airport" }
+            ]},
+            day3: { date: "Feb 23", title: "Waitomo 黑水探險 🔦", color: "#7B9AA6", items: [
+                { time: "09:00", title: "早餐時光 🍳", desc: "" },
+                { time: "10:00", title: "前往租車公司 🚗", desc: "💡 路上超市買能量棒!", duration: "1h" },
+                { time: "11:00", title: "取車", desc: "辦理租車手續", duration: "45m" },
+                { time: "13:15", title: "El Mexicano Zapata Cantina 🥪", desc: "吃午餐 & 漢米爾頓花園散步", link: "https://elmexicanozapata.com/" },
+                { time: "16:00", title: "黑水探險報到 🌊", desc: "Black Water Rafting", duration: "3h", isHighlight: true, note: "<b>準備泳衣、浴巾</b>" },
+                { time: "21:30", title: "Haven on Hilton 🛌", desc: "入住休息", type: "hotel", link: "https://www.google.com/maps/search/?api=1&query=8A+Hilton+Road+Rotorua" }
+            ]},
+            day4: { date: "Feb 24", title: "Rotorua 牧場與文化 🐑", color: "#889C8F", items: [
+                { time: "09:00", title: "Skyline Rotorua Luge 🏎️", desc: "斜坡滑車競速體驗", duration: "1.5h", link: "https://www.google.com/maps/search/?api=1&query=Skyline+Rotorua" },
+                { time: "11:00", title: "皇家愛歌頓牧場羊毛秀 🐑", desc: "Agrodome Farm Show", duration: "1h", isHighlight: true },
+                { time: "12:10", title: "牧場導覽 (Farm Tour)", desc: "親近動物時間", duration: "1h" },
+                { time: "14:30", title: "Anita Gelato 🍦", desc: "甜點 + 市區散步", link: "https://www.google.com/maps/search/?api=1&query=Anita+Gelato" },
+                { time: "18:30", title: "毛利文化體驗 (Mitai) 💃", desc: "Haka 戰舞與傳統晚餐", isHighlight: true, link: "https://www.google.com/maps/search/?api=1&query=Mitai+Maori+Village" },
+                { time: "22:00", title: "Haven on Hilton 🛌", desc: "休息", type: "hotel" }
+            ]},
+            day5: { date: "Feb 25", title: "Taupo 地熱奇景 🌋", color: "#7B9AA6", items: [
+                { time: "09:00", title: "前往懷奧塔普地熱世界", link: "https://www.google.com/maps/search/?api=1&query=Wai-O-Tapu" },
+                { time: "10:15", title: "Lady Knox Geyser ⛲", desc: "噴泉表演 (必看)", isHighlight: true },
+                { time: "10:30", title: "地熱景觀參觀", desc: "香檳池、惡魔浴池", duration: "1h 15m" },
+                { time: "12:00", title: "胡卡瀑布 (Huka Falls) 🌊", link: "https://www.google.com/maps/search/?api=1&query=Huka+Falls" },
+                { time: "12:30", title: "蜂蜜之家 (Huka Honey Hive) 🐝", desc: "買蜂蜜 🐝", link: "https://www.google.com/maps/search/?api=1&query=Huka+Honey+Hive" },
+                { time: "13:20", title: "Pauly's Diner 🍔", desc: "午餐: 評價最高的漢堡" },
+                { time: "14:30", title: "飛機麥當勞 🍟", desc: "Taupo McDonald's 拍照", link: "https://www.google.com/maps/search/?api=1&query=McDonald%27s+Taupo" },
+                { time: "19:30", title: "Westfield Newmarket Rooftop", desc: "浪漫晚餐", link: "https://www.google.com/maps/search/?api=1&query=Westfield+Newmarket" },
+                { time: "21:00", title: "Ramada by Wyndham 🛌", desc: "入住休息", type: "hotel", link: "https://www.google.com/maps/search/?api=1&query=Ramada+by+Wyndham+Newmarket+Auckland" }
+            ]},
+            day6: { date: "Feb 26", title: "飛往皇后鎮 ✈️", color: "#889C8F", items: [
+                { time: "08:00", title: "Teed Street Larder 🥞", desc: "早餐推薦", link: "https://www.google.com/maps/search/?api=1&query=Teed+Street+Larder" },
+                { time: "09:00", title: "Westfield Newmarket 🛍️", desc: "Farmers / Life Pharmacy / Chemist Warehouse", note: "買: Anihana 洗髮皂、Nature's Way SuperFoods、Thayers 爽膚水、Trilogy莓果精華、Antipodes眼霜、Aura面膜", link: "https://www.google.com/maps/search/?api=1&query=Westfield+Newmarket" },
+                { time: "11:30", title: "奧克蘭機場 ✈️", desc: "還車 & 搭接駁車" },
+                { time: "15:00", title: "捷星航空 (AKL-ZQN)", desc: "16:50 抵達皇后鎮", type: "flight" },
+                { time: "17:30", title: "Ora Retreat 🏨", desc: "入住 Check-in", type: "hotel", link: "https://www.google.com/maps/search/?api=1&query=Ora+Retreat+Queenstown" },
+                { time: "19:00", title: "晚餐: Flame Bar & Grill 🍔", desc: "或 Fergburger", link: "https://www.google.com/maps/search/?api=1&query=Flame+Bar" }
+            ]},
+            day7: { date: "Feb 27", title: "Glenorchy 魔戒 💍", color: "#7B9AA6", items: [
+                { time: "09:00", title: "Deer Park Heights 🦌", desc: "鹿公園與湖景", isHighlight: true, link: "https://www.google.com/maps/search/?api=1&query=Deer+Park+Heights" },
+                { time: "11:00", title: "Fergburger 🍔", desc: "外帶漢堡午餐", link: "https://www.google.com/maps/search/?api=1&query=Fergburger" },
+                { time: "11:30", title: "Bennett's Bluff Lookout 📸", desc: "公路拍照點" },
+                { time: "13:30", title: "Glenorchy Horse Riding 🐎", desc: "騎馬體驗 (1.5h)", isHighlight: true, link: "https://www.google.com/maps/search/?api=1&query=Glenorchy-Paradise+Road" },
+                { time: "15:00", title: "Glenorchy Wharf 🚶", desc: "碼頭與紅屋頂倉庫散步" },
+                { time: "19:00", title: "晚餐: Madam Woo 🥘", desc: "或 Blue Kanu", link: "https://www.google.com/maps/search/?api=1&query=Madam+Woo" },
+                { time: "22:00", title: "Ora Retreat 🛌", desc: "休息", type: "hotel" }
+            ]},
+            day8: { date: "Feb 28", title: "Wanaka 跳傘 🪂", color: "#889C8F", items: [
+                { time: "09:00", title: "Creative Arts Market 🎨", desc: "Earnslaw Park 逛市集吃午餐", link: "https://www.google.com/maps/search/?api=1&query=Creative+Queenstown+Arts+Market", note: "停車: One Mile Car Park" },
+                { time: "11:30", title: "前往 Wanaka 🛣️", desc: "Crown Range Road 景觀公路" },
+                { time: "14:10", title: "Skydive Wanaka 🪂", desc: "高空跳傘報到", isHighlight: true, link: "https://www.google.com/maps/search/?api=1&query=Skydive+Wanaka" },
+                { time: "17:30", title: "That Wanaka Tree 🌳", desc: "孤獨樹湖邊散步 + 晚餐" },
+                { time: "20:00", title: "McLennan's Rest 🛌", desc: "入住", type: "hotel", link: "https://www.google.com/maps/search/?api=1&query=64A+McLennan+Road" }
+            ]},
+            day9: { date: "Mar 01", title: "薰衣草與西海岸 🚙", color: "#7B9AA6", items: [
+                { time: "08:00", title: "早晨行程 🌅", desc: "Plan A: 湖畔 / Plan B: 補跳傘" },
+                { time: "14:00", title: "Wanaka Lavender Farm 🧺", desc: "薰衣草農場 (門票$180)", isHighlight: true, link: "https://www.google.com/maps/search/?api=1&query=Wanaka+Lavender+Farm" },
+                { time: "18:00", title: "前往 Haast 🚙", desc: "車程約 2h 10m" },
+                { time: "21:00", title: "Heartland Hotel Haast 🛌", desc: "入住", type: "hotel", link: "https://www.google.com/maps/search/?api=1&query=Heartland+Hotel+Haast" }
+            ]},
+            day10: { date: "Mar 02", title: "Fox 冰川健行 🧊", color: "#889C8F", items: [
+                { time: "08:30", title: "開車前往 Fox Glacier 🚗", desc: "車程約 2 小時" },
+                { time: "11:30", title: "Heli Hike 報到 🚁", desc: "冰川健行體驗 (44 Main Road)", isHighlight: true, link: "https://www.google.com/maps/search/?api=1&query=44+Main+Road+Fox+Glacier" },
+                { time: "16:00", title: "Lake Matheson Walk 🚶‍♂️", desc: "馬修森湖散步", link: "https://www.google.com/maps/search/?api=1&query=Lake+Matheson+Walk" },
+                { time: "17:00", title: "晚餐推薦 🍽️", desc: "Cook Saddle Cafe / The Last Kitchen / Cafe Neve" },
+                { time: "20:00", title: "Fox Glacier Airbnb 🛌", desc: "入住", type: "hotel", link: "https://maps.app.goo.gl/rtMVeSkedv7gcqMFA" }
+            ]},
+            day11: { date: "Mar 03", title: "Arthur's Pass ⛰️", color: "#7B9AA6", items: [
+                { time: "08:30", title: "Plan A: 冰川健行 (Heli Hike) 🚁", desc: "若前一日取消則改今日 (至 12:30 結束)", isHighlight: true },
+                { time: "12:30", title: "午餐時間 🥪", desc: "Plan A" },
+                { time: "13:30", title: "跨越 Arthur's Pass 🚗", desc: "車程約 3.5 小時" },
+                { time: "17:00", title: "Devil's Punchbowl Waterfall 💦", desc: "瀑布步道" },
+                { time: "18:45", title: "Castle Hill 🪨", desc: "怪石拍照點", isHighlight: true },
+                { time: "19:30", title: "Springfield Motel & Lodge 🛌", desc: "抵達 & 入住 (Plan A)", type: "hotel", link: "https://www.google.com/maps/search/?api=1&query=Springfield+Motel+Lodge" },
+                
+                { time: "---", title: "--- Plan B: 悠閒觀光版 ---", desc: "前日成功冰川健行", note: "方案分隔線" },
+
+                { time: "08:30", title: "Plan B: 馬修森湖 🚶", desc: "Lake Matheson 晨間散步" },
+                { time: "10:30", title: "前往 Arthur's Pass 🚗", desc: "" },
+                { time: "14:00", title: "午餐 & 瀑布步道 🥪💦", desc: "Devil's Punchbowl" },
+                { time: "16:15", title: "Castle Hill 🪨", desc: "怪石拍照", isHighlight: true },
+                { time: "18:00", title: "Springfield Motel & Lodge 🛌", desc: "抵達 & 入住 (Plan B)", type: "hotel", link: "https://www.google.com/maps/search/?api=1&query=Springfield+Motel+Lodge" }
+            ]},
+            day12: { date: "Mar 04", title: "Christchurch 花園 🌹", color: "#889C8F", items: [
+                { time: "09:30", title: "前往基督城 🚗", duration: "54m" },
+                { time: "10:30", title: "公寓294 Check-in 🏨", desc: "辦理入住", link: "https://www.google.com/maps/search/?api=1&query=294+Gloucester+Street" },
+                { time: "12:00", title: "Riverside Market 🥗", desc: "午餐逛市集", link: "https://www.google.com/maps/search/?api=1&query=Riverside+Market+Christchurch" },
+                { time: "13:30", title: "植物園 / 藝術中心 🧼", desc: "買羊毛皂 (Frances Nation)" },
+                { time: "15:30", title: "New Regent St 🛶", desc: "撐篙體驗" },
+                { time: "20:00", title: "公寓294 🍽️", desc: "休息", type: "hotel" }
+            ]},
+            day13: { date: "Mar 05", title: "Tekapo 星空 ✨", color: "#7B9AA6", items: [
+                { time: "09:00", title: "前往 Fairlie 🚗", desc: "車程 2.5h" },
+                { time: "11:30", title: "Fairlie Bakehouse 🥧", desc: "必吃鮭魚派、豬五花派", link: "https://www.google.com/maps/search/?api=1&query=Fairlie+Bakehouse" },
+                { time: "14:00", title: "Tekapo 雙人房 🏨", desc: "Check-in (30 Murray Place)", type: "hotel", link: "https://www.google.com/maps/search/?api=1&query=30+Murray+Place+Lake+Tekapo" },
+                { time: "16:00", title: "好牧羊人教堂 ⛪", desc: "牛奶藍湖水地標", link: "https://www.google.com/maps/search/?api=1&query=Church+of+the+Good+Shepherd" },
+                { time: "18:00", title: "Kohan Restaurant 🍱", desc: "湖畔日式晚餐", link: "https://www.google.com/maps/search/?api=1&query=Kohan+Restaurant" },
+                { time: "21:15", title: "Tekapo Springs Stargazing ✨", desc: "星空之旅 (6 Lakeside Drive)", isHighlight: true, link: "https://www.google.com/maps/search/?api=1&query=Tekapo+Springs" }
+            ]},
+            day14: { date: "Mar 06", title: "Mt Cook 健行 🧗", color: "#889C8F", items: [
+                { time: "08:00", title: "前往庫克山 🚗", desc: "⚠️ 備糧食、防曬、加滿油" },
+                { time: "09:30", title: "Sealy Tarns Track 🧗", desc: "挑戰階梯步道", isHighlight: true, link: "https://www.google.com/maps/search/?api=1&query=Sealy+Tarns+Track" },
+                { time: "13:30", title: "White Horse Hill 🧺", desc: "停車場野餐", link: "https://www.google.com/maps/search/?api=1&query=White+Horse+Hill+Campground" },
+                { time: "14:30", title: "Tasman Glacier View 🧊", desc: "冰川景觀步道", link: "https://www.google.com/maps/search/?api=1&query=Tasman+Glacier+Car+Park" },
+                { time: "18:30", title: "The Last Spud 🍽️", desc: "晚餐推薦", link: "https://www.google.com/maps/search/?api=1&query=The+Last+Spud" },
+                { time: "21:00", title: "Lake Tekapo Airbnb 🛌", desc: "休息", type: "hotel" }
+            ]},
+            day15: { date: "Mar 07", title: "Cromwell 水果 🍒", color: "#7B9AA6", items: [
+                { time: "09:00", title: "Lake Pukaki 🏞️", desc: "Peter's Lookout 觀景台" },
+                { time: "10:00", title: "Mt Cook Alpine Salmon 🐟", desc: "吃鮭魚配湖景", link: "https://www.google.com/maps/search/?api=1&query=Mt+Cook+Alpine+Salmon" },
+                { time: "11:00", title: "High Country Salmon 🍔", desc: "餵魚、外帶漢堡", link: "https://www.google.com/maps/search/?api=1&query=High+Country+Salmon" },
+                { time: "13:00", title: "Cromwell 水果雕塑 🍒", desc: "拍照打卡", link: "https://www.google.com/maps/search/?api=1&query=Cromwell+Fruit+Sculpture" },
+                { time: "13:30", title: "Mrs Jones Fruit Stall 🍦", desc: "必吃水果冰淇淋", link: "https://www.google.com/maps/search/?api=1&query=Mrs+Jones+Fruit+Stall" },
+                { time: "17:00", title: "Idyllburn BnB 🛌", desc: "入住", type: "hotel", link: "https://maps.app.goo.gl/1uLUApqFo7q4p3BP7" },
+                { time: "18:00", title: "The Stoaker Room 🍖", desc: "橡木桶煙燻料理", link: "https://www.google.com/maps/search/?api=1&query=The+Stoaker+Room" }
+            ]},
+            day16: { date: "Mar 08", title: "Te Anau 峽灣門戶 🦌", color: "#889C8F", items: [
+                { time: "10:30", title: "Arrowtown (箭鎮) ☕", desc: "Bailiez Cafe 午餐 & 逛老街", link: "https://www.google.com/maps/search/?api=1&query=Bailiez+Cafe" },
+                { time: "12:30", title: "Devil’s Staircase 🛣️", desc: "魔鬼階梯觀景點", link: "https://www.google.com/maps/search/?api=1&query=Devil%27s+Staircase+Lookout" },
+                { time: "16:00", title: "Pamela's Place 🛌", desc: "入住", type: "hotel", link: "https://maps.app.goo.gl/DcTcApghrVAfQLAN7" },
+                { time: "18:00", title: "Redcliff Café 🦞", desc: "推薦峽灣鹿肉 (需預定)", link: "https://www.google.com/maps/search/?api=1&query=Redcliff+Cafe" },
+                { time: "20:00", title: "FreshChoice Te Anau 🦟", desc: "⚠️ 買防蚊液 (Sandflies)", link: "https://www.google.com/maps/search/?api=1&query=FreshChoice+Te+Anau" }
+            ]},
+            day17: { date: "Mar 09", title: "Milford Sound 🚢", color: "#7B9AA6", items: [
+                { time: "08:00", title: "出發 ⛽", desc: "⚠️ Te Anau 務必加滿油" },
+                { time: "08:30", title: "Milford Road 🌾", desc: "Eglinton Valley / Knobs Flat 停靠" },
+                { time: "13:00", title: "Milford Sound Cruise 🚢", desc: "遊輪體驗 (至 15:00)", isHighlight: true, duration: "2h" },
+                { time: "15:30", title: "返回 Te Anau ↩️", desc: "" },
+                { time: "21:00", title: "Pamela's Place 🛌", desc: "休息", type: "hotel", link: "https://maps.app.goo.gl/DcTcApghrVAfQLAN7" }
+            ]},
+            day18: { date: "Mar 10", title: "Queenstown 採買 🛍️", color: "#889C8F", items: [
+                { time: "09:30", title: "Five Mile Shopping Centre 🍳", desc: "午餐+採買", link: "https://www.google.com/maps/search/?api=1&query=Five+Mile+Centre" },
+                { time: "12:30", title: "大採買 🛍️", desc: "Pak'nSave / Kmart / Chemist Warehouse" },
+                { time: "16:00", title: "21B Riverside Road 🏨", desc: "Check-in", type: "hotel", link: "https://www.google.com/maps/search/?api=1&query=21B+Riverside+Road+Queenstown" },
+                { time: "17:30", title: "搭公車 (1號線) 🚌", desc: "前往市區轉接駁車" },
+                { time: "19:15", title: "Onsen Hot Pools ♨️", desc: "泡湯體驗", isHighlight: true }
+            ]},
+            day19: { date: "Mar 11", title: "再見紐西蘭 🛫", color: "#7B9AA6", items: [
+                { time: "10:00", title: "Frank's Eatery 🍳", desc: "早午餐", link: "https://www.google.com/maps/search/?api=1&query=Frank's+Eatery" },
+                { time: "11:30", title: "加油 & 還車 ⛽", desc: "機場區域加滿油" },
+                { time: "15:05", title: "華航 CI0052 🛫", desc: "皇后鎮 (15:05) -> 雪梨 (16:25)", type: "flight", note: "雪梨轉機買 Aesop" },
+                { time: "22:10", title: "華航 CI0052 🛫", desc: "雪梨 (22:10) -> 台北 (04:20 +1)", type: "flight" }
+            ]}
+        };
+        
+        // Data for Hotels (Updated with Region and Notes)
+        const hotelsData = [
+            { name: "奧克蘭機場假日飯店", region: "奧克蘭機場", address: "Holiday Inn Auckland Airport", checkin: "15:00", checkout: "11:00", note: "提供早餐、免費停車", link: "https://www.google.com/maps/search/?api=1&query=Holiday+Inn+Auckland+Airport" },
+            { name: "Haven on Hilton (Airbnb)", region: "Rotorua", address: "8A Hilton Road, Rotorua", checkin: "15:00 - 21:00", checkout: "10:00", note: "免費停車，晚上9點後請勿使用洗衣烘乾機。退房前請將使用過的毛巾放一起、清理垃圾、關閉電源、鎖門。", link: "https://www.google.com/maps/search/?api=1&query=8A+Hilton+Road+Rotorua+Bay+of+Plenty+Region+3010" },
+            { name: "Ramada by Wyndham Newmarket", region: "奧克蘭市區", address: "Auckland", checkin: "14:00", checkout: "10:00", note: "免費停車", link: "https://www.google.com/maps/search/?api=1&query=Ramada+by+Wyndham+Newmarket+Auckland" },
+            { name: "Ora Retreat", region: "Queenstown", address: "Queenstown", checkin: "14:00 - 22:00", checkout: "10:00", note: "提供早餐、免費停車、Wi-Fi、共用衛浴", link: "https://www.google.com/maps/search/?api=1&query=Ora+Retreat+Queenstown" },
+            { name: "McLennan's Rest (Airbnb)", region: "Wānaka", address: "64A McLennan Road, Hāwea Flat", checkin: "15:00", checkout: "10:00", note: "免費停車、Wi-Fi", link: "https://www.google.com/maps/search/?api=1&query=64A+McLennan+Road+Hawea+Flat+Otago+9382" },
+            { name: "Heartland Hotel Haast", region: "Haast", address: "Haast", checkin: "14:00", checkout: "10:00", note: "免費停車、Wi-Fi", link: "https://www.google.com/maps/search/?api=1&query=Heartland+Hotel+Haast" },
+            { name: "Fox Glacier (Airbnb)", region: "Fox Glacier", address: "Fox Glacier", checkin: "14:00 - 21:00", checkout: "10:00", note: "提供早餐、免費停車、Wi-Fi、共用桑拿、洗衣烘衣須付費", link: "https://maps.app.goo.gl/rtMVeSkedv7gcqMFA" },
+            { name: "Springfield Motel and Lodge", region: "Springfield", address: "Springfield", checkin: "15:00 - 21:00", checkout: "10:00", note: "公用廚房、免費停車、Wi-Fi、Netflix", link: "https://www.google.com/maps/search/?api=1&query=Springfield+Motel+%26+Lodge+New+Zealand" },
+            { name: "公寓294 (Airbnb)", region: "Christchurch", address: "294 Gloucester St, Christchurch", checkin: "彈性", checkout: "11:00", note: "提供早餐、免費停車、Wi-Fi、免費洗衣烘衣", link: "https://www.google.com/maps/search/?api=1&query=294+Gloucester+Street+Christchurch" },
+            { name: "Lake Tekapo (Airbnb)", region: "Tekapo", address: "30 Murray Place, Lake Tekapo", checkin: "16:00", checkout: "10:00", note: "免費停車、Wi-Fi、（共用）浴室", link: "https://www.google.com/maps/search/?api=1&query=30+Murray+Place+Lake+Tekapo+Canterbury+7999" },
+            { name: "Idyllburn BnB (Airbnb)", region: "Cromwell", address: "Cromwell", checkin: "15:00 - 23:00", checkout: "10:00", note: "提供早餐、免費停車", link: "https://maps.app.goo.gl/1uLUApqFo7q4p3BP7" },
+            { name: "Pamela's Place (Airbnb)", region: "Te Anau", address: "Te Anau", checkin: "15:00 - 21:00", checkout: "10:00", note: "提供早餐、路邊有免費停車位、附近有自助洗衣店、房東將會迎接您", link: "https://maps.app.goo.gl/DcTcApghrVAfQLAN7" },
+            { name: "皇后鎮近機場 (Airbnb)", region: "Queenstown", address: "21B Riverside Road, Queenstown", checkin: "18:00 - 21:00", checkout: "10:00", note: "路邊免費停車、可洗衣服、無烘衣、Wi-Fi", link: "https://www.google.com/maps/search/?api=1&query=21B+Riverside+Road+Queenstown+Otago+9300" }
+        ];
+
+        // Prep Data
+        const defaultPrepData = [
+            {
+                title: "1. 衣物與穿搭",
+                items: [
+                    { text: "排汗透氣短袖上衣2-3件", done: false },
+                    { text: "長袖上衣2-3件", done: false },
+                    { text: "輕便的羽絨背心", done: false },
+                    { text: "防風防水外套", done: false },
+                    { text: "防潑水的長褲(冰川健行)", done: false },
+                    { text: "短褲、長裙2-3件", done: false },
+                    { text: "發熱衣、發熱褲1套", done: false },
+                    { text: "洋裝、外套(拍照用)", done: false },
+                    { text: "電棒捲", done: false }
+                ]
+            },
+            {
+                title: "2. 鞋",
+                items: [
+                    { text: "登山鞋(鞋底要乾淨)、溯溪鞋", done: false },
+                    { text: "休閒鞋、黑色涼鞋", done: false },
+                    { text: "拖鞋(泡湯用)", done: false }
+                ]
+            },
+            {
+                title: "3. 戶外活動裝備",
+                items: [
+                    { text: "泳衣、泳帽2-3套", done: false },
+                    { text: "浴巾", done: false },
+                    { text: "護髮分裝(中)", done: false },
+                    { text: "三合一分裝(大)", done: false },
+                    { text: "洗面乳分裝(中)", done: false },
+                    { text: "內衣褲洗劑分裝(小)", done: false },
+                    { text: "防曬乳、防曬噴霧", done: false },
+                    { text: "太陽眼鏡、遮陽帽", done: false },
+                    { text: "小背包 (健行用)", done: false },
+                    { text: "防曬美白保健品", done: false },
+                    { text: "頭燈(夜間看星星)", done: false }
+                ]
+            },
+            {
+                title: "4. 攝影設備",
+                items: [
+                    { text: "運動相機(騎馬、拍星星)", done: false },
+                    { text: "行動電源", done: false },
+                    { text: "腳架", done: false },
+                    { text: "紐西蘭轉接頭", done: false },
+                    { text: "充電線", done: false }
+                ]
+            },
+            {
+                title: "5. 個人護理與藥品",
+                items: [
+                    { text: "防蚊液 (紐西蘭買)", done: false },
+                    { text: "保養、化妝品", done: false },
+                    { text: "卸妝品", done: false },
+                    { text: "常備藥品", done: false },
+                    { text: "隱形眼鏡18天份", done: false },
+                    { text: "口罩", done: false },
+                    { text: "小剪刀", done: false },
+                    { text: "衛生棉、條", done: false },
+                    { text: "牙膏、牙刷", done: false },
+                    { text: "耳塞", done: false },
+                    { text: "濕紙巾", done: false },
+                    { text: "棉花棒", done: false }
+                ]
+            },
+            {
+                title: "6. 生活用品",
+                items: [
+                    { text: "隨身包", done: false },
+                    { text: "塑膠袋(裝換洗衣物)", done: false },
+                    { text: "收納衣架、曬衣夾", done: false },
+                    { text: "保溫瓶", done: false },
+                    { text: "網路SIM卡、SIM卡針", done: false },
+                    { text: "Google Maps 離線地圖", done: false },
+                    { text: "筆(填好電子入境聲明)", done: false },
+                    { text: "靠枕", done: false }
+                ]
+            },
+            {
+                title: "7. 重要文件",
+                items: [
+                    { text: "護照", done: false },
+                    { text: "NZeTA簽證", done: false },
+                    { text: "紐西蘭幣", done: false },
+                    { text: "國際駕照", done: false },
+                    { text: "旅平險單據", done: false }
+                ]
+            }
+        ];
+        
+        // Shopping Data - Categorized
+        const defaultShoppingData = [
+            {
+                title: "🍫 超市必買 - 零食/餅乾 (Pak'nSave / Countdown)",
+                items: [
+                    { text: "麥盧卡蜂蜜 (Manuka Honey) 🍯", done: false },
+                    { text: "Whittaker's 巧克力 (西洋梨等口味) 🍫", done: false },
+                    { text: "Cookie Time 巧克力餅乾 🍪", done: false },
+                    { text: "Bluebird 薯片 (Salt & Vinegar) 🥔", done: false },
+                    { text: "Eta Uppercuts 洋芋片", done: false },
+                    { text: "Delisio 洋芋片", done: false },
+                    { text: "FarmBake 巧克力餅乾", done: false },
+                    { text: "Pascall Milk Shakes 牛奶糖 🍬", done: false },
+                    { text: "The Natural Co. 軟糖", done: false },
+                    { text: "紐西蘭奇異果乾 🥝", done: false }
+                ]
+            },
+            {
+                title: "🧴 藥妝店必買 - 保養/清潔 (Chemist Warehouse / Farmers)",
+                items: [
+                    { text: "蜂膠牙膏 (Propolis Toothpaste) 🦷", done: false },
+                    { text: "市集羊毛皂 (Wool Soap) 🧼", done: false },
+                    { text: "Trilogy 玫瑰果油 (抗皺/淡斑) 🌹", done: false },
+                    { text: "Antipodes 眼霜、面膜", done: false },
+                    { text: "ecostore 肥皂/清潔用品 🧼", done: false },
+                    { text: "綿羊油護手霜 & 護唇膏 🐑", done: false },
+                    { text: "麥盧卡蜂蜜護唇膏 💄", done: false },
+                    { text: "Puresource 淨膚火山泥香皂", done: false },
+                    { text: "Thayers 爽膚水", done: false },
+                    { text: "Anihana 洗髮皂 💆‍♀️", done: false }
+                ]
+            },
+            {
+                title: "💊 保健食品與藥品 (Pharmacy)",
+                items: [
+                    { text: "Comvita 蜂膠噴霧", done: false },
+                    { text: "Comvita 蜂膠兒童棒棒糖 🍭", done: false },
+                    { text: "Comvita 蜂蜜潤喉糖", done: false },
+                    { text: "Nature Care 蜂膠潤喉糖", done: false },
+                    { text: "Beeorg 蜂喉糖", done: false },
+                    { text: "LIFESPAN Omega-3 魚油 🐟", done: false },
+                    { text: "Goodbye Sandfly 防蚊液 (必備!) 🦟", done: false },
+                    { text: "Oasis Sun 防曬用品 ☀️", done: false }
+                ]
+            }
+        ];
+
+        let prepData = [];
+        let itineraryData = {};
+        let shoppingData = [];
+
+        // --- Functions ---
+        function initItinerary() {
+            const stored = localStorage.getItem('nz_itinerary_v6');
+            if (stored) {
+                try {
+                    itineraryData = JSON.parse(stored);
+                } catch(e) {
+                    itineraryData = JSON.parse(JSON.stringify(initialItinerary));
+                }
+            } else {
+                itineraryData = JSON.parse(JSON.stringify(initialItinerary));
+            }
+            renderAllDays();
+        }
+
+        function saveItinerary() {
+            localStorage.setItem('nz_itinerary_v6', JSON.stringify(itineraryData));
+        }
+        
+        function renderAllDays() {
+            const container = document.getElementById('dynamic-days-container');
+            container.innerHTML = '';
+
+            for (let i = 2; i <= 19; i++) {
+                const dayId = `day${i}`;
+                const data = itineraryData[dayId];
+                if (!data) continue;
+
+                const dayDiv = document.createElement('div');
+                dayDiv.id = dayId;
+                dayDiv.className = 'day-content';
+                
+                dayDiv.innerHTML = `
+                    <div class="flex flex-col md:flex-row items-start">
+                        <div class="md:w-1/3 flex flex-row md:flex-col items-center justify-start md:items-end md:pr-12 mb-4 md:mb-0 gap-3 md:gap-0">
+                            <div class="bg-white rounded-full p-2 shadow-sm border-4" style="border-color: ${data.color}40;">
+                                <span class="text-xl md:text-3xl font-bold w-8 h-8 md:w-14 md:h-14 flex items-center justify-center" style="color: ${data.color};">${i < 10 ? '0'+i : i}</span>
+                            </div>
+                            <div>
+                                <h3 class="date-font text-lg md:text-2xl font-bold" style="color: ${data.color};">${data.date}</h3>
+                                <span class="text-gray-500 text-sm md:text-base">${data.title}</span>
+                            </div>
+                        </div>
+                        <div class="glass-card rounded-2xl p-5 md:p-8 border-l-4 w-full" style="border-color: ${data.color};">
+                            <h4 class="text-xl md:text-2xl font-bold mb-4 border-b border-gray-100 pb-2" style="color: ${data.color};">${data.title}</h4>
+                            <div class="space-y-4" id="list-${dayId}">
+                                ${data.items.map((item, idx) => renderItem(item, dayId, idx)).join('')}
+                            </div>
+                            <div class="mt-6 pt-4 border-t border-gray-100 flex gap-2">
+                                <button onclick="addNewSpot('${dayId}')" class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-600 px-3 py-2 rounded transition"><i class="fas fa-plus"></i> 新增景點</button>
+                            </div>
+                        </div>
+                    </div>
+                    ${i === 19 ? renderFlightCard19() : ''}
+                `;
+                container.appendChild(dayDiv);
+            }
+        }
+
+        function renderFlightCard19() {
+            return `
+            <div class="mt-4 bg-white/80 p-4 rounded-xl border border-[#7B9AA6] shadow-sm relative overflow-hidden">
+                <div class="absolute top-0 right-0 bg-[#7B9AA6] text-white text-xs px-2 py-1 rounded-bl">回程航班</div>
+                
+                <!-- Flight 1 -->
+                <div class="flex justify-between items-center mt-2">
+                    <span class="text-xs font-bold text-gray-500">VA 0162</span>
+                    <span class="text-xs text-gray-400">15:05 - 16:25</span>
+                </div>
+                <div class="flex items-center text-sm mb-2 border-b border-gray-100 pb-2">
+                    <span class="font-bold mr-2 text-[#4A5559]">ZQN</span> <i class="fas fa-plane text-xs text-[#7B9AA6] mx-1"></i> <span class="font-bold ml-2 text-[#4A5559]">SYD</span>
+                </div>
+
+                <!-- Flight 2 -->
+                <div class="flex justify-between items-center mt-1">
+                    <span class="text-xs font-bold text-gray-500">CI 0052</span>
+                    <span class="text-xs text-gray-400">22:10 - 04:20 (+1)</span>
+                </div>
+                <div class="flex items-center text-sm mb-2">
+                    <span class="font-bold mr-2 text-[#4A5559]">SYD</span> <i class="fas fa-plane text-xs text-[#7B9AA6] mx-1"></i> <span class="font-bold ml-2 text-[#4A5559]">TPE</span>
+                </div>
+
+                <div class="mt-2 bg-[#E0E7EA] p-2 rounded border border-[#7B9AA6]/20">
+                    <span class="font-bold text-xs text-[#7B9AA6] block mb-1">🇦🇺 雪梨轉機:</span>
+                    <p class="text-xs text-gray-600">買 Aesop 洗手乳、香水 (免稅)</p>
+                </div>
+            </div>`;
+        }
+
+        function renderItem(item, dayId, idx) {
+            const highlightClass = item.isHighlight ? 'card-highlight p-3 rounded-lg shadow-md' : '';
+            const bgClass = !item.isHighlight && item.type === 'hotel' ? 'bg-white border border-gray-100 p-2 rounded' : 
+                           (!item.isHighlight && idx % 2 !== 0 ? 'bg-[#F2F4F3] p-2 rounded' : '');
+            
+            return `
+            <div class="group relative ${highlightClass} ${bgClass}">
+                <div class="flex items-start">
+                    <span class="font-mono ${item.isHighlight ? 'text-gray-300' : 'text-gray-400'} w-14 text-sm pt-1 shrink-0">${item.time}</span>
+                    <div class="w-full">
+                        <div class="flex justify-between items-start">
+                            <span class="font-bold ${item.isHighlight ? 'text-white' : 'text-gray-700'} text-sm md:text-base">${item.title}</span>
+                            <div class="opacity-0 group-hover:opacity-100 transition-opacity flex gap-2">
+                                <button onclick="editItem('${dayId}', ${idx})" class="text-xs text-blue-400 hover:text-blue-600"><i class="fas fa-pen"></i></button>
+                                <button onclick="deleteItineraryItem('${dayId}', ${idx})" class="text-xs text-red-400 hover:text-red-600"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                        
+                        ${item.link ? `<a href="${item.link}" target="_blank" class="nav-link text-xs ${item.isHighlight ? 'text-blue-300' : 'text-blue-500'} block mt-1"><i class="fas fa-location-dot mr-1"></i> 導航</a>` : ''}
+                        
+                        <p class="text-sm ${item.isHighlight ? 'text-gray-200' : 'text-gray-600'} mt-1">${item.desc}</p>
+                        
+                        ${item.duration || item.cost || item.note ? `
+                        <div class="mt-2 text-xs flex flex-wrap gap-2">
+                            ${item.duration ? `<span class="bg-black/10 px-2 py-1 rounded"><i class="fas fa-clock mr-1"></i>${item.duration}</span>` : ''}
+                            ${item.cost ? `<span class="bg-black/10 px-2 py-1 rounded"><i class="fas fa-tag mr-1"></i>${item.cost}</span>` : ''}
+                            ${item.note ? `<span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded border border-yellow-200"><i class="fas fa-circle-info mr-1"></i>${item.note}</span>` : ''}
+                        </div>` : ''}
+                    </div>
+                </div>
+            </div>
+            `;
+        }
+
+        function renderHotels() {
+            const container = document.getElementById('hotel-list');
+            container.innerHTML = '';
+            hotelsData.forEach(hotel => {
+                const card = document.createElement('div');
+                card.className = 'bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex flex-col gap-3';
+                card.innerHTML = `
+                    <div class="flex flex-col md:flex-row justify-between md:items-start gap-4">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="bg-[#E0E7EA] text-[#7B9AA6] text-xs font-bold px-2 py-1 rounded">${hotel.region}</span>
+                                <h5 class="font-bold text-[#7B9AA6] text-lg">${hotel.name}</h5>
+                            </div>
+                            <a href="${hotel.link}" target="_blank" class="nav-link text-xs text-gray-500"><i class="fas fa-map-pin"></i> ${hotel.address}</a>
+                            <div class="mt-3 text-sm text-gray-600 bg-[#F2F4F3] p-3 rounded-lg border border-gray-100">
+                                <span class="font-bold text-[#889C8F] block mb-1"><i class="fas fa-info-circle mr-1"></i>備註：</span>
+                                ${hotel.note}
+                            </div>
+                        </div>
+                        <div class="text-sm text-gray-600 bg-[#E0E7EA] p-3 rounded-lg text-center min-w-[140px] flex flex-col justify-center h-full">
+                            <p class="mb-1"><span class="font-bold text-[#7B9AA6]">In:</span> ${hotel.checkin}</p>
+                            <p><span class="font-bold text-[#7B9AA6]">Out:</span> ${hotel.checkout}</p>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+        
+        // Checklist Functions
+        function initChecklist() {
+            const stored = localStorage.getItem('nz_prep_list');
+            prepData = stored ? JSON.parse(stored) : JSON.parse(JSON.stringify(defaultPrepData));
+            renderChecklist();
+        }
+        
+        function renderChecklist() {
+            const container = document.getElementById('checklist-container');
+            container.innerHTML = '';
+            prepData.forEach((category, catIndex) => {
+                const card = document.createElement('div');
+                card.className = 'bg-white p-4 rounded-xl border border-gray-100 shadow-sm';
+                let itemsHtml = category.items.map((item, itemIndex) => `
+                    <div class="flex items-center justify-between py-2 border-b border-gray-50 checklist-item ${item.done ? 'checked' : ''}">
+                        <label class="flex items-center cursor-pointer flex-1">
+                            <input type="checkbox" class="checklist-checkbox mr-3 rounded text-teal-600 focus:ring-teal-500" ${item.done ? 'checked' : ''} onchange="toggleCheck(${catIndex}, ${itemIndex})">
+                            <span class="text-sm text-gray-700 select-none">${item.text}</span>
+                        </label>
+                        <button onclick="deleteChecklistItem(${catIndex}, ${itemIndex})" class="checklist-delete text-gray-300 hover:text-red-400 ml-2"><i class="fas fa-times"></i></button>
+                    </div>
+                `).join('');
+                card.innerHTML = `
+                    <h5 class="font-bold text-[#7B9AA6] mb-3 text-lg border-b-2 border-[#E0E7EA] pb-2">${category.title}</h5>
+                    <div class="mb-4">${itemsHtml}</div>
+                    <div class="flex mt-2">
+                        <input type="text" id="new-item-${catIndex}" onkeypress="checkEnter(event, ${catIndex})" placeholder="新增..." class="flex-1 text-sm border border-gray-200 rounded-l px-3 py-2 focus:outline-none focus:border-[#7B9AA6]">
+                        <button onclick="addItem(${catIndex})" class="bg-[#889C8F] text-white px-3 py-2 rounded-r text-sm hover:bg-opacity-90"><i class="fas fa-plus"></i></button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+        
+        // Shopping List Functions
+        function initShoppingList() {
+            const stored = localStorage.getItem('nz_shopping_list_v8');
+            shoppingData = stored ? JSON.parse(stored) : JSON.parse(JSON.stringify(defaultShoppingData));
+            renderShoppingList();
+        }
+
+        function renderShoppingList() {
+            const container = document.getElementById('shopping-list-container');
+            container.innerHTML = '';
+            shoppingData.forEach((category, catIndex) => {
+                const card = document.createElement('div');
+                card.className = 'bg-white p-4 rounded-xl border border-gray-100 shadow-sm';
+                let itemsHtml = category.items.map((item, itemIndex) => `
+                    <div class="flex items-center justify-between py-2 border-b border-gray-50 checklist-item ${item.done ? 'checked' : ''}">
+                        <label class="flex items-center cursor-pointer flex-1">
+                            <input type="checkbox" class="checklist-checkbox mr-3 rounded text-teal-600 focus:ring-teal-500" ${item.done ? 'checked' : ''} onchange="toggleShoppingCheck(${catIndex}, ${itemIndex})">
+                            <span class="text-sm text-gray-700 select-none">${item.text}</span>
+                        </label>
+                        <button onclick="deleteShoppingItem(${catIndex}, ${itemIndex})" class="checklist-delete text-gray-300 hover:text-red-400 ml-2"><i class="fas fa-times"></i></button>
+                    </div>
+                `).join('');
+                card.innerHTML = `
+                    <h5 class="font-bold text-[#B5A8B7] mb-3 text-lg border-b-2 border-[#E0E7EA] pb-2">${category.title}</h5>
+                    <div class="mb-4">${itemsHtml}</div>
+                    <div class="flex mt-2">
+                        <input type="text" id="new-shop-item-${catIndex}" onkeypress="checkShoppingEnter(event, ${catIndex})" placeholder="新增..." class="flex-1 text-sm border border-gray-200 rounded-l px-3 py-2 focus:outline-none focus:border-[#B5A8B7]">
+                        <button onclick="addShoppingItem(${catIndex})" class="bg-[#B5A8B7] text-white px-3 py-2 rounded-r text-sm hover:bg-opacity-90"><i class="fas fa-plus"></i></button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Global Exports
+        window.toggleCheck = (c, i) => { prepData[c].items[i].done = !prepData[c].items[i].done; localStorage.setItem('nz_prep_list', JSON.stringify(prepData)); renderChecklist(); };
+        window.addItem = (c) => { const input = document.getElementById(`new-item-${c}`); if(input.value.trim()){ prepData[c].items.push({text: input.value.trim(), done: false}); localStorage.setItem('nz_prep_list', JSON.stringify(prepData)); renderChecklist(); } };
+        window.deleteChecklistItem = (c, i) => { if(confirm('確定刪除?')) { prepData[c].items.splice(i, 1); localStorage.setItem('nz_prep_list', JSON.stringify(prepData)); renderChecklist(); } };
+        window.checkEnter = (e, c) => { if(e.key === "Enter") addItem(c); };
+        window.resetChecklist = () => { if(confirm('重置?')) { localStorage.removeItem('nz_prep_list'); location.reload(); } };
+
+        window.toggleShoppingCheck = (c, i) => { shoppingData[c].items[i].done = !shoppingData[c].items[i].done; localStorage.setItem('nz_shopping_list_v8', JSON.stringify(shoppingData)); renderShoppingList(); };
+        window.addShoppingItem = (c) => { const input = document.getElementById(`new-shop-item-${c}`); if(input.value.trim()){ shoppingData[c].items.push({text: input.value.trim(), done: false}); localStorage.setItem('nz_shopping_list_v8', JSON.stringify(shoppingData)); renderShoppingList(); } };
+        window.deleteShoppingItem = (c, i) => { if(confirm('確定刪除?')) { shoppingData[c].items.splice(i, 1); localStorage.setItem('nz_shopping_list_v8', JSON.stringify(shoppingData)); renderShoppingList(); } };
+        window.checkShoppingEnter = (e, c) => { if(e.key === "Enter") addShoppingItem(c); };
+        window.resetShoppingList = () => { if(confirm('重置必買清單?')) { localStorage.removeItem('nz_shopping_list_v8'); location.reload(); } };
+
+        window.addNewSpot = (dayId) => { itineraryData[dayId].items.push({time: "00:00", title: "新景點", desc: "...", isHighlight: false}); saveItinerary(); renderAllDays(); setTimeout(() => editItem(dayId, itineraryData[dayId].items.length - 1), 100); };
+        window.deleteItineraryItem = (dayId, idx) => { if(confirm('刪除行程?')) { itineraryData[dayId].items.splice(idx, 1); saveItinerary(); renderAllDays(); } };
+        
+        window.editItem = (dayId, idx) => {
+            const item = itineraryData[dayId].items[idx];
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black/50 z-[60] flex items-center justify-center p-4 backdrop-blur-sm';
+            modal.innerHTML = `
+                <div class="bg-white rounded-xl p-6 w-full max-w-md shadow-2xl edit-form max-h-[90vh] overflow-y-auto">
+                    <h3 class="text-xl font-bold text-[#4A5559] mb-4">編輯行程</h3>
+                    <label>時間</label><input type="text" id="edit-time" value="${item.time || ''}">
+                    <label>標題</label><input type="text" id="edit-title" value="${item.title || ''}">
+                    <label>簡介</label><textarea id="edit-desc" rows="3">${item.desc || ''}</textarea>
+                    <label>停留時間</label><input type="text" id="edit-duration" value="${item.duration || ''}">
+                    <label>費用</label><input type="text" id="edit-cost" value="${item.cost || ''}">
+                    <label>備註</label><input type="text" id="edit-note" value="${item.note || ''}">
+                    <label>連結</label><input type="text" id="edit-link" value="${item.link || ''}">
+                    <div class="flex items-center gap-2 mb-6 mt-4"><input type="checkbox" id="edit-highlight" class="w-5 h-5 accent-[#4A5559]" ${item.isHighlight ? 'checked' : ''}><label for="edit-highlight" class="mb-0 text-base">重點活動</label></div>
+                    <div class="flex gap-3"><button onclick="this.closest('.fixed').remove()" class="flex-1 py-2 border rounded">取消</button><button onclick="saveEdit('${dayId}', ${idx})" class="flex-1 py-2 bg-[#7B9AA6] text-white rounded font-bold">儲存</button></div>
+                </div>`;
+            document.body.appendChild(modal);
+        };
+
+        window.saveEdit = (dayId, idx) => {
+            itineraryData[dayId].items[idx] = {
+                time: document.getElementById('edit-time').value,
+                title: document.getElementById('edit-title').value,
+                desc: document.getElementById('edit-desc').value,
+                duration: document.getElementById('edit-duration').value,
+                cost: document.getElementById('edit-cost').value,
+                note: document.getElementById('edit-note').value,
+                link: document.getElementById('edit-link').value,
+                isHighlight: document.getElementById('edit-highlight').checked,
+                type: itineraryData[dayId].items[idx].type
+            };
+            saveItinerary(); renderAllDays(); document.querySelector('.fixed.inset-0').remove();
+        };
+
+        const dayIds = ['prep', 'shopping', 'hotel', 'day1', 'day2', 'day3', 'day4', 'day5', 'day6', 'day7', 'day8', 'day9', 'day10', 'day11', 'day12', 'day13', 'day14', 'day15', 'day16', 'day17', 'day18', 'day19', 'final'];
+        let currentDayIndex = 0;
+
+        window.switchTab = (dayId) => {
+            currentDayIndex = dayIds.indexOf(dayId);
+            document.querySelectorAll('.day-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.day-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById(dayId).classList.add('active');
+            const btn = document.getElementById('btn-' + dayId);
+            if (btn) { btn.classList.add('active'); btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }); }
+            document.getElementById('mobile-day-select').value = dayId;
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        };
+
+        window.prevDay = () => { if (currentDayIndex > 0) switchTab(dayIds[currentDayIndex - 1]); };
+        window.nextDay = () => { if (currentDayIndex < dayIds.length - 1) switchTab(dayIds[currentDayIndex + 1]); };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initChecklist();
+            initShoppingList();
+            renderHotels();
+            initItinerary();
+            let touchstartX = 0;
+            const contentArea = document.getElementById('content-area');
+            contentArea.addEventListener('touchstart', e => touchstartX = e.changedTouches[0].screenX, false);
+            contentArea.addEventListener('touchend', e => { if (e.changedTouches[0].screenX < touchstartX - 50) nextDay(); if (e.changedTouches[0].screenX > touchstartX + 50) prevDay(); }, false);
+        });
+    </script>
+</body>
+</html>
